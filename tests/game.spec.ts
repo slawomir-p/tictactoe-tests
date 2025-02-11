@@ -46,7 +46,6 @@ test("player X wins diagonally", async ({ gamePage }) => {
   await expect(gamePage.gameStatus).toHaveText("Winner: X");
 });
 
-//test each win option - up down across diagonally
 test("player O wins horizontally", async ({ gamePage }) => {
   await gamePage.putMarkByRowAndColumnNr("X", 0, 0);
   await gamePage.putMarkByRowAndColumnNr("O", 1, 0);
