@@ -102,3 +102,16 @@ test("can see the game history and go back to any previous turn", async ({
   await gamePage.goToTurnNr(1);
   await expect(page).toHaveScreenshot("test-data/move-2.png");
 });
+
+test("can restart game at any time", async ({ gamePage }) => {
+  await gamePage.putMarkByRowAndColumnNr("X", 0, 0);
+  await gamePage.putMarkByRowAndColumnNr("O", 0, 1);
+  await gamePage.putMarkByRowAndColumnNr("X", 0, 2);
+  await gamePage.resetButton.click();
+
+  // test that all squares are empty after reset
+  const allButtons = await gamePage.squareButton.all();
+  for (const button of allButtons) {
+    await expect(button).toBeEmpty();
+  }
+});
